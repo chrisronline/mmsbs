@@ -1,0 +1,36 @@
+.header {
+  text-align: center;
+  background: #000;
+  color: #fff;
+  /*width: 600px;*/
+  color: #EFDFAE;
+}
+
+.details {
+  margin: 0 auto;
+  text-align: center;
+  /*background: #d23036;*/
+  position: relative;
+  left: 29px;
+  /*top: -7px;*/
+  padding: 0.25em;
+  font-size: 1.2em;
+}
+
+.details-address, .details-phone {
+  margin: 0 0.3em;
+  display: inline-block;
+}
+
+.details a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.details a:hover {
+  text-decoration: underline;
+}
+
+.details i {
+  margin-right: 5px;
+}

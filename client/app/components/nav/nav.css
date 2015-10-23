@@ -1,0 +1,25 @@
+.siteNav {
+  font-size: 1.1em;
+  box-sizing: border-box;
+  text-align: center;
+  padding: 1em;
+  position: relative;
+  left: 2em;
+  top: 16px;
+}
+
+.siteNav a {
+  color: inherit;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1.75px;
+  margin: 0 5px;
+}
+
+.siteNav a:hover {
+  color: #d23036;
+}
+
+.siteNav a:first-child {
+  margin-left: 0;
+}

@@ -1,0 +1,33 @@
+body {
+  width: 100%;
+  height: 100%;
+  /*font: normal 14px 'Lato';*/
+  margin: 0;
+  padding: 0;
+  /*background: #000;*/
+  /*color: #efefef;*/
+}
+
+.container {
+
+}
+
+.content {
+  margin: 0 auto;
+  position: relative;
+  top: 2em;
+  text-align: center;
+}
+
+.frontImg {
+  width: 50%;
+}
+
+/** Utility */
+.topMargin {
+  margin-top: 2rem;
+}
+.bg-disabled {
+  background-color: #ddd;
+  opacity: 0.3;
+}

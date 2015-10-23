@@ -1,0 +1,70 @@
+.calendar-table {
+  width: 75%;
+  margin: 2em auto 0 auto;
+}
+
+.calendar-table th,
+.calendar-day {
+  padding: 0.5rem;
+}
+
+.calendar-day-cell {
+  height: 100px;
+  width: 100px;
+  position: relative;
+  border: solid 2px transparent;
+  cursor: pointer;
+}
+.calendar-day-cell:hover {
+  background-color: #333;
+}
+
+.calendar-day-cell.bg-disabled {
+  /*height: 50px;*/
+}
+.calendar-day-cell.bg-disabled:hover {
+  background-color: #ddd;
+}
+
+.calendar-day-today h4 {
+  color: #d23036;
+}
+
+.calendar-day {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.calendar-day h4 {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  margin: 0;
+}
+
+.calendar-day-events {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: relative;
+  top: 1.5rem;
+}
+
+.calendar-month {
+  margin: 0 2rem;
+  /*float: left;*/
+}
+
+.calendar-month-previous, .calendar-month-next {
+  /*float: left;*/
+  position: relative;
+  top: 4px;
+  cursor: pointer;
+  color: #EFDFAE;
+}
+
+.calendar-month-previous:hover, .calendar-month-next:hover {
+  color: #d23036;
+}
+}

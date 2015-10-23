@@ -1,0 +1,31 @@
+{
+  "name": "client",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "browserify": "browserify -vd -t reactify -t cssify app/app.jsx -o dist/bundle.js",
+    "watchify": "watchify -vd -t reactify -t cssify app/app.jsx -o dist/bundle.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browserify": "^11.2.0",
+    "cssify": "^0.7.0",
+    "gulp": "^3.9.0",
+    "gulp-util": "^3.0.6",
+    "react-tools": "^0.13.3",
+    "reactify": "^1.1.1",
+    "watchify": "^3.4.0"
+  },
+  "dependencies": {
+    "events": "^1.1.0",
+    "flux": "^2.1.1",
+    "lodash": "^3.10.1",
+    "moment": "^2.10.6",
+    "react": "^0.13.3",
+    "react-bootstrap": "^0.25.1",
+    "react-router": "^0.13.4",
+    "selectize": "^0.12.1"
+  }
+}
