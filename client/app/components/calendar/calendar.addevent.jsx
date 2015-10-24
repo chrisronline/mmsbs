@@ -3,7 +3,10 @@
 var React = require('react');
 var _ = require('lodash');
 var moment = require('moment');
+
+var config = require('../../config/config.js');
 var ScheduleAction = require('../../actions/schedule.action.jsx');
+var FormInputComponents = require('../form/inputs.js');
 
 var CalendarAddEventComponent = React.createClass({
   propTypes: {
@@ -55,7 +58,7 @@ var CalendarAddEventFormComponent = React.createClass({
         time: date.format(TIME_INPUT_FORMAT),
         name: 'Chris',
         phone: '585-236-3326',
-        type: 'Shave',
+        type: config.TYPES.SHAVE,
         description: 'Real close!'
       }
     };
@@ -76,51 +79,27 @@ var CalendarAddEventFormComponent = React.createClass({
         <div className="col-lg-12">
           <div className="panel panel-default">
             <form className="calendar-add-event-form panel-body form-horizontal">
-              <div className="form-group">
-                <label htmlFor="inputDate" className="col-sm-2 control-label">Date</label>
-                <div className="col-sm-10">
-                  <input type="date" className="form-control" id="inputDate" placeholder="Date"
-                    value={this.state.event.date} onChange={_.partialRight(this._handleChange, 'date')}/>
-                </div>
-              </div>
-              <div className="form-group">
-                <label htmlFor="inputTime" className="col-sm-2 control-label">Time</label>
-                <div className="col-sm-10">
-                  <input type="time" className="form-control" id="inputTime" placeholder="Time"
-                    value={this.state.event.time} onChange={_.partialRight(this._handleChange, 'time')}/>
-                </div>
-              </div>
-              <div className="form-group">
-                <label htmlFor="inputName" className="col-sm-2 control-label">Name</label>
-                <div className="col-sm-10">
-                  <input type="text" className="form-control" id="inputName" placeholder="Name"
-                    value={this.state.event.name} onChange={_.partialRight(this._handleChange, 'name')}/>
-                </div>
-              </div>
-              <div className="form-group">
-                <label htmlFor="inputTel" className="col-sm-2 control-label">Phone</label>
-                <div className="col-sm-10">
-                  <input type="tel" className="form-control" id="inputTel" placeholder="Telephone Number"
-                    value={this.state.event.phone} onChange={_.partialRight(this._handleChange, 'phone')}/>
-                </div>
-              </div>
-              <div className="form-group">
-                <label htmlFor="inputType" className="col-sm-2 control-label">Type</label>
-                <div className="col-sm-10">
-                  <select className="form-control" id="inputType" onChange={_.partialRight(this._handleChange, 'type')}
-                    value={this.state.event.type}>
-                    <option value="Haircut">Haircut</option>
-                    <option value="Shave">Shave</option>
-                  </select>
-                </div>
-              </div>
-              <div className="form-group">
-                <label htmlFor="inputDesc" className="col-sm-2 control-label">Comments</label>
-                <div className="col-sm-10">
-                  <textarea className="form-control" rows="3" id="inputDesc" placeholder="Comments"
-                    value={this.state.event.description} onChange={_.partialRight(this._handleChange, 'description')}></textarea>
-                </div>
-              </div>
+
+              <FormInputComponents.Date id="inputDate" label="Date" type="date" placeholder="Date"
+                defaultValue={this.state.event.date} onChange={_.partialRight(this._handleChange, 'date')}/>
+
+              <FormInputComponents.Time id="inputTime" label="Time" type="time" placeholder="Time"
+                defaultValue={this.state.event.time} onChange={_.partialRight(this._handleChange, 'time')}/>
+
+              <FormInputComponents.Input id="inputName" label="Name" type="text" placeholder="Name"
+                defaultValue={this.state.event.name} onChange={_.partialRight(this._handleChange, 'name')}/>
+
+              <FormInputComponents.Input id="inputTel" label="Phone" type="tel" placeholder="Telephone Number"
+                defaultValue={this.state.event.phone} onChange={_.partialRight(this._handleChange, 'phone')}/>
+
+              <FormInputComponents.Select id="inputType" label="Type"
+                defaultValue={this.state.event.type.name} onChange={_.partialRight(this._handleChange, 'time')}
+                options={_.values(config.TYPES)} optionValue="name" optionLabel="label"/>
+
+              <FormInputComponents.Textarea id="inputDesc" label="Comments" placeholder="Comments"
+                defaultValue={this.state.event.description} onChange={_.partialRight(this._handleChange, 'description')}/>
+
+
               <div className="form-group">
                 <div className="col-sm-offset-2 col-sm-2">
                   <button type="button" className="btn btn-primary"

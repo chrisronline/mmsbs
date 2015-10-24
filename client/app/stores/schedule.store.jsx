@@ -4,6 +4,8 @@
 
 var _ = require('lodash');
 var EventEmitter = require('events').EventEmitter;
+
+var config = require('../config/config.js');
 var Dispatcher = require('../dispatchers/dispatcher.jsx');
 var ScheduleAction = require('../actions/schedule.action.jsx');
 var ScheduleActions = ScheduleAction.Actions;
@@ -25,7 +27,7 @@ var ScheduleStore = _.assign({}, EventEmitter.prototype, {
         date: 1445974925,
         phone: '585-234-5678',
         name: 'Test McTesterson',
-        type: 'Haircut',
+        type: config.TYPES.HAIRCUT,
         description: 'Need a tune up'
       }
     ];

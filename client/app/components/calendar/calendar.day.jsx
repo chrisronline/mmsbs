@@ -26,7 +26,7 @@ var CalendarDayComponent = React.createClass({
     var shortEvents = this.props.data.map(function(event, index) {
       return (
         <li key={index}>
-          {moment.unix(event.date).format('h:mma')}: {event.type}
+          {moment.unix(event.date).format('h:mma')}: {event.type.label}
         </li>
       );
     });
@@ -34,7 +34,7 @@ var CalendarDayComponent = React.createClass({
     var longEvents = this.props.data.map(function(event, index) {
       return (
         <li key={index}>
-          {moment.unix(event.date).format('h:mma')} - {event.type} for {event.name} ({event.phone})
+          {moment.unix(event.date).format('h:mma')} - {event.type.label} for {event.name} ({event.phone})
         </li>
       );
     });
