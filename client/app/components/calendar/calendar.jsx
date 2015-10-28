@@ -4,7 +4,6 @@ var React = require('react');
 var moment = require('moment');
 var _ = require('lodash');
 
-var ScheduleStore = require('../../stores/schedule.store.jsx');
 var CalendarDay = require('./calendar.day.jsx');
 var CalendarHeader = require('./calendar.header.jsx');
 
@@ -15,39 +14,19 @@ var ROWS_TO_SHOW = 5;
 var DAYS_IN_WEEK = 7;
 var TODAY = moment();
 
-function getStateFromStore() {
-  var schedule = _(ScheduleStore.getSchedule())
-    .map(function(entry) {
-      return _.extend(entry, { dateAsDay: moment.unix(entry.date).format(MOMENT_FORMAT_DATE_AS_DAY) });
-    })
-    .groupBy('dateAsDay')
-    .value();
-
-  return {
-    schedule: schedule,
-    startingDay: TODAY
-  };
-}
-
 var CalendarComponent = React.createClass({
-  getInitialState: function() {
-    return getStateFromStore();
-  },
-  componentDidMount: function() {
-    ScheduleStore.addChangeListener(this._onChange);
-  },
-  componentWillUnmount: function() {
-    ScheduleStore.removeChangeListener(this._onChange);
-  },
-  _onChange: function() {
-    this.setState(getStateFromStore());
+  propTypes: {
+    calendarData: React.PropTypes.object,
+    startingDay: React.PropTypes.object,
+    dayComponent: React.PropTypes.func,
+    headerComponent: React.PropTypes.func
   },
   _goToMonth: function(newStartingDate) {
     this.setState({ startingDay: newStartingDate });
   },
   render: function() {
-    var startingDay = this.state.startingDay;
-    var schedule = this.state.schedule;
+    var startingDay = this.props.startingDay;
+    var data = this.props.calendarData;
 
     var daysFromLastMonthToShow = startingDay.clone().date(1).day();
     var startDate = startingDay.clone().date(1).subtract(daysFromLastMonthToShow, 'day');
@@ -59,9 +38,10 @@ var CalendarComponent = React.createClass({
       });
     });
 
+    var dayComponent = this.props.dayComponent || CalendarDay;
     var rows = datesToShow.map(function(setOfDates, index) {
       var days = setOfDates.map(function(date, index) {
-        var scheduleData = schedule[date.format(MOMENT_FORMAT_DATE_AS_DAY)] || [];
+        var scheduleData = data ? data[date.format(MOMENT_FORMAT_DATE_AS_DAY)] || [] : null;
         var classes = 'calendar-day-cell';
         
         if (TODAY.isSame(date)) {
@@ -70,10 +50,11 @@ var CalendarComponent = React.createClass({
         else if (TODAY.isAfter(date)) {
           classes += ' bg-disabled';
         }
+
         return (
-          <td className={classes} key={index}>
-            <CalendarDay date={date} data={scheduleData}/>
-          </td>
+          React.createElement("td", {className: classes, key: index}, 
+            React.createElement(dayComponent, {date: date, data: scheduleData})
+          )
         );
       });
 
@@ -84,10 +65,15 @@ var CalendarComponent = React.createClass({
       );
     });
 
+    var headerComponent = this.props.headerComponent || CalendarHeader;
+    var calendarHeader = (
+      React.createElement(headerComponent, {goToMonth: this._goToMonth, startingDay: startingDay})
+    );
+
     return (
       <div className="row">
         <article className="calendar col-lg-12">
-          <CalendarHeader goToMonth={this._goToMonth} startingDay={startingDay}/>
+          {calendarHeader}
           <table className="calendar-table table-bordered table-responsive">
             <tr>
               <th>Sunday</th>

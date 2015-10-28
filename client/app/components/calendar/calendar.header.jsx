@@ -4,8 +4,6 @@ var React = require('react');
 var _ = require('lodash');
 var moment = require('moment');
 
-var CalendarAddEvent = require('./calendar.addevent.jsx');
-
 var CalendarHeaderComponent = React.createClass({
   propTypes: {
     startingDay: React.PropTypes.object.isRequired,
@@ -35,11 +33,6 @@ var CalendarHeaderComponent = React.createClass({
                 <a onClick={_.partial(this.props.goToMonth, nextMonth)} className="calendar-month-next">
                   <i className="fa fa-2x fa-chevron-right"></i>
                 </a>
-              </div>
-            </div>
-            <div className="row topMargin">
-              <div className="col-lg-6 col-lg-offset-3">
-                <CalendarAddEvent/>
               </div>
             </div>
           </div>

@@ -27,7 +27,7 @@ var ScheduleStore = _.assign({}, EventEmitter.prototype, {
         date: 1445974925,
         phone: '585-234-5678',
         name: 'Test McTesterson',
-        type: config.TYPES.HAIRCUT,
+        type: _.find(config.types, { name: 'haircut' }),
         description: 'Need a tune up'
       }
     ];

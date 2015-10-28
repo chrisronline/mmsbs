@@ -15,7 +15,7 @@ var HeaderComponent = React.createClass({
         <div className="details">
           <p className="details-address">
             <i className="fa fa-map"></i>
-            <a href="https://goo.gl/maps/K9Qo5P5zVPS2">9 Main St. Scottsville, NY</a>
+            <a href="https://goo.gl/maps/8MGoBcZSmrE2">9 Main St. Scottsville, NY</a>
           </p>
           <p className="details-phone">
             <i className="fa fa-phone"></i>

@@ -7,6 +7,7 @@ var moment = require('moment');
 var config = require('../../config/config.js');
 var ScheduleAction = require('../../actions/schedule.action.jsx');
 var FormInputComponents = require('../form/inputs.js');
+var Calendar = require('../calendar/calendar.jsx');
 
 var CalendarAddEventComponent = React.createClass({
   propTypes: {
@@ -54,7 +55,7 @@ var CalendarAddEventFormComponent = React.createClass({
     var date = this.props.date || moment();
     return {
       event: {
-        date: date.format(DATE_INPUT_FORMAT),
+        date: date,//.format(DATE_INPUT_FORMAT),
         time: date,//.format(TIME_INPUT_FORMAT),
         name: 'Chris',
         phone: '585-236-3326',
@@ -93,8 +94,9 @@ var CalendarAddEventFormComponent = React.createClass({
           <div className="panel panel-default">
             <form className="calendar-add-event-form panel-body form-horizontal">
 
-              <FormInputComponents.Date id="inputDate" label="Date" type="date" placeholder="Date"
-                defaultValue={this.state.event.date} onChange={_.partialRight(this._handleChange, 'date')}/>
+              <Calendar startingDay={this.state.event.date}/>
+
+              
 
               <FormInputComponents.Time id="inputTime" label="Time" type="time" placeholder="Time"
                 defaultValue={this.state.event.time} onChange={_.partialRight(this._handleChange, 'time')}
