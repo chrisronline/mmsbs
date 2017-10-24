@@ -6,7 +6,7 @@ var rsync = new Rsync()
   .flags('rzltv')
   .source(process.cwd() + '/basic/*')
   // .destination('croberso@ftp.croberson.net:/home2/croberso/public_html/shauni-stage/');
-  .destination('croberso@ftp.croberson.net:/home2/croberso/public_html/mmsbs/');
+  .destination('croberso@ftp.croberson.net:/home2/croberso/public_html/mikesmainstreetbarbershop/');
 
 // Execute the command
 rsync.execute(function(error, code, cmd) {
