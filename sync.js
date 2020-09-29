@@ -11,5 +11,9 @@ var rsync = new Rsync()
 // Execute the command
 rsync.execute(function(error, code, cmd) {
     // we're done
+    if (error) {
+      console.error(error);
+      throw error;
+    }
     console.log('done');
 });
