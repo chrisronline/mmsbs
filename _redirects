@@ -1,0 +1,3 @@
+# Redirects all traffic from the old domain to the new domain
+https://www.mikesmainstreetbarbershop.com/* https://7mainbarbershop.com//:splat 301!
+https://www.mikesmainstreetbarbershop.com/* https://7mainbarbershop.com//:splat 301!
